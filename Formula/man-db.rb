@@ -31,9 +31,6 @@ class ManDb < Formula
   end
 
   def install
-    ENV["libpipeline_CFLAGS"] = "-I#{Formula["libpipeline"].opt_include}"
-    ENV["libpipeline_LIBS"] = "-L#{Formula["libpipeline"].opt_lib} -lpipeline"
-
     args = %W[
       --disable-dependency-tracking
       --disable-silent-rules
