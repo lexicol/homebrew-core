@@ -4,6 +4,7 @@ class Dnsperf < Formula
   url "https://www.dns-oarc.net/files/dnsperf/dnsperf-2.4.2.tar.gz"
   sha256 "be1782ada2bc735b1d3538ed2fa8fb52d917eb32538c2f0612ae60c024101c31"
   license "Apache-2.0"
+  revision 1
 
   livecheck do
     url :homepage
