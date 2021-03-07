@@ -49,6 +49,9 @@ class Apr < Formula
     system "./configure", *std_configure_args
     system "make", "install"
 
+    # Install symlinks so that linkage doesn't break for reverse dependencies.
+    (libexec/"lib").install_symlink Dir["#{lib}/#{shared_library("*")}"]
+
     rm Dir["#{lib}/*.{la,exp}"]
 
     # No need for this to point to the versioned path.
