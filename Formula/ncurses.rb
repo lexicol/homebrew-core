@@ -23,14 +23,24 @@ class Ncurses < Formula
   end
 
   def install
-    system "./configure", "--prefix=#{prefix}",
-                          "--enable-pc-files",
-                          "--with-pkg-config-libdir=#{lib}/pkgconfig",
-                          "--enable-sigwinch",
-                          "--enable-symlinks",
-                          "--enable-widec",
-                          "--with-shared",
-                          "--with-gpm=no"
+    args = %W[
+      --prefix=#{prefix}
+      --enable-pc-files
+      --with-pkg-config-libdir=#{lib}/pkgconfig
+      --enable-sigwinch
+      --enable-symlinks
+      --enable-widec
+      --with-shared
+      --with-gpm=no
+    ]
+
+    on_linux do
+      # Homebrew GCC does not support Ada
+      # https://github.com/Homebrew/linuxbrew-core/pull/2841
+      args << "--without-ada"
+    end
+
+    system "./configure", *args
     system "make", "install"
     make_libncurses_symlinks
 
